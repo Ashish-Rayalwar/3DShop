@@ -20,17 +20,9 @@ app.use("/api/accounts", userRoute);
 app.use("/api", fileRoute);
 app.use("/order", orderRoute);
 
-// app.get("/test", (req, res) => {
-//   // const axios = require("axios");
-
-//   res.redirect(
-//     "https://classroom-training-bucket.s3.ap-south-1.amazonaws.com/abc/E-commerceapp-main.zip"
-//   );
-// });
-// /api/order/file/fileID
 const url = process.env.URL;
 
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 dbConnection(url);
 
 app.listen(port, () => {

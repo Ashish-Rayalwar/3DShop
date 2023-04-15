@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
-import { fileApi, orderApi } from "../api/api";
+import { api } from "../api/api";
 
 function Pay() {
   const navigate = useNavigate();
@@ -29,8 +29,8 @@ function Pay() {
     navigate("/login");
   }
   useEffect(() => {
-    orderApi
-      .get(`user/${params.id}`, { withCredentials: true })
+    api
+      .get(`/order/user/${params.id}`, { withCredentials: true })
       .then((responce) => {
         console.log(responce.data.data);
         setOrder(responce.data.data);
@@ -44,27 +44,38 @@ function Pay() {
       });
   }, [params.id]);
 
+  // `https://intelligent-bedecked-switch.glitch.me/order/payment/${params.id}`;
   const status = "completed";
   let token;
   async function makePayement() {
-    try {
-      let responce = await axios.post(
-        `http://localhost:5000/order/payment/${params.id}`,
+    // try {
+    //   let responce = await axios.post(
+    //     `http://localhost:5000/order/payment/${params.id}`,
+    //     { status }
+    //   );
+    api
+      .post(
+        `/order/payment/${params.id}`,
         { status },
         { withCredentials: true }
-      );
+      )
+      .then((responce) => {
+        console.log(responce.data);
+        setOrder(responce.data.data);
+        setFile(responce.data.data.fileId);
+        localStorage.setItem("token", responce.data.token);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.data.message == "You are not loggedIn") {
+          navigate("/login");
+        }
+      });
+    // token = responce.data.token;
+    // } catch (error) {
 
-      setOrder(responce.data.data);
-      setFile(responce.data.data.fileId);
-      localStorage.setItem("token", responce.data.token);
-      // token = responce.data.token;
-      console.log(responce.data.token);
-    } catch (error) {
-      if (error.response.data.message == "You are not loggedIn") {
-        navigate("/login");
-      }
-      console.log(error.responce.data.message);
-    }
+    // console.log(error.responce.data.message);
+    // }
   }
   // const [url, setUrl] = useState("");
 
@@ -73,14 +84,8 @@ function Pay() {
     let token = localStorage.getItem("token");
     let orderId = params.id;
     console.log(token);
-    fileApi
-      .post(
-        `/file/download`,
-        { orderId, token },
-        {
-          withCredentials: true,
-        }
-      )
+    api
+      .post(`/file/download`, { orderId, token }, { withCredentials: true })
       .then((responce) => {
         console.log(responce.data.url);
         window.open(responce.data.url);

@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { fileApi } from "../api/api";
+import { api } from "../api/api";
 // import { checkAdmin } from "./Navbar";
 
 const LogoImg = require("../images/logo.png");
@@ -61,8 +61,8 @@ function EditFile() {
   const [singleFile, setSingleFileData] = useState({});
 
   useEffect(() => {
-    fileApi
-      .get(`/files/${params.id}`)
+    api
+      .get(`/files/${params.id}`, { withCredentials: true })
       .then((responce) => {
         console.log(responce.data.data);
         setSingleFileData(responce.data.data);
@@ -92,7 +92,7 @@ function EditFile() {
     console.log(formData);
 
     setError("");
-    fileApi
+    api
       .put(`/files/${params.id}`, formData, {
         withCredentials: true,
       })

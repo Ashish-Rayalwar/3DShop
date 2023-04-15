@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/accounts", userRoute);
 app.use("/api", fileRoute);
-app.use("/order", orderRoute);
+app.use("/api/order", orderRoute);
 
 const url = process.env.URL;
 

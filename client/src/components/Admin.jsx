@@ -3,15 +3,15 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { fileApi } from "../api/api";
+import { api } from "../api/api";
 
 function Admin() {
   const [allData, setAllData] = useState([]);
   //   const [userData, setUserData] = useState({})
 
   useEffect(() => {
-    fileApi
-      .get("/admin", { withCredentials: true })
+    api
+      .get("/accounts/admin", { withCredentials: true })
       .then((responce) => {
         setAllData(responce.data.data);
         console.log(responce.data.data);

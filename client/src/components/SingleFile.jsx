@@ -9,7 +9,8 @@ import Navbar, { checkAdmin } from "./Navbar";
 
 import { AuthContext, CartContext } from "../App";
 import EditFile from "./EditFile";
-import { fileApi, orderApi } from "../api/api";
+import { api } from "../api/api";
+// import Cookies from "js-cookie";
 
 const Container = styled(Box)`
   display: flex;
@@ -61,7 +62,7 @@ const SingleFile = () => {
   const [order, setOrder] = useState({});
   var isAdmin = checkAdmin();
   useEffect(() => {
-    fileApi
+    api
       .get(`/files/${params.id}`)
       .then((response) => {
         console.log(response.data.data);
@@ -81,8 +82,9 @@ const SingleFile = () => {
     // if (!user) {
     //   navigate("/login");
     // }
-    orderApi
-      .post(`file/${params.id}`, null, { withCredentials: true })
+    // let token = Cookies.get("newToken");
+    api
+      .post(`/order/file/${params.id}`, null, { withCredentials: true })
       .then((response) => {
         setOrder(response.data.data);
         let orderId = response.data.data._id;
@@ -102,7 +104,7 @@ const SingleFile = () => {
   const DeleteFile = () => {
     let ok = window.confirm("Do you want to delete this item");
     if (ok) {
-      fileApi
+      api
         .delete(`/files/${params.id}`, {
           withCredentials: true,
         })

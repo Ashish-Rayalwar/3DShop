@@ -3,13 +3,15 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const verifyToken = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const token = req.cookies.authorization || req.headers["authorization"];
+    // const token = req.;
+    // const token = authToken && authToken.split(" ")[1];
 
-    // console.log(token);
+    console.log(token);
     if (!token)
       return res
         .status(400)
-        .send({ status: false, message: "You are not loggedIn" });
+        .send({ status: false, message: "You are not loggedIn Token" });
 
     if (token) {
       JWT.verify(token, process.env.JWTA, (err, tokenDetails) => {

@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { fileApi } from "../api/api";
+import { api } from "../api/api";
 // import { checkAdmin } from "./Navbar";
 
 const LogoImg = require("../images/logo.png");
@@ -70,7 +70,7 @@ function CreateFile() {
     console.log(formData);
     // console.log(FileData);
     setError("");
-    fileApi
+    api
       .post("/files", formData, {
         withCredentials: true,
       })

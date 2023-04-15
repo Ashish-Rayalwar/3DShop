@@ -4,8 +4,8 @@ import { Box, TextField, Button, styled, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../App";
-import { userApi } from "../api/api";
-
+import { api } from "../api/api";
+import Cookies from "js-cookie";
 const LogoImg = require("../images/logo.png");
 const Container = styled(Box)`
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
@@ -69,13 +69,17 @@ const Login = () => {
     const userCredentials = Object.fromEntries(formData);
     console.log(formData);
     setError("");
-    userApi
-      .post("/login", userCredentials, {
+    api
+      .post("/accounts/login", userCredentials, {
         withCredentials: true,
       })
       .then((response) => {
         console.log(response.data.data);
-        // window.alert(response.data.message);
+        console.log(response.data.token);
+        let token = response.data.token;
+        localStorage.setItem("auth-token", token);
+        window.alert(response.data.message);
+        Cookies.set("authorization", token, { expires: 86400 });
         loginScuccess(response.data.data);
         navigate("/");
       })

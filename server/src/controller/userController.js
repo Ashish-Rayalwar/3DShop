@@ -97,10 +97,10 @@ const loginUser = async (req, res) => {
     const token = JWT.sign({ userId: userId, role: role }, process.env.JWTA, {
       expiresIn: 86400,
     });
+    // .cookie("token", token, { httpOnly: true, secure: true, sameSite: true })
     return res
-      .cookie("token", token, { httpOnly: true })
       .status(200)
-      .json({ message: "Login Success", data: rest });
+      .send({ message: "Login Success", data: rest, token: token });
   } catch (error) {
     if (error.isJoi == true) error.status = 400;
 
@@ -119,7 +119,7 @@ const logout = async (req, res) => {
   );
 
   res
-    .clearCookie("token", {
+    .clearCookie("newToken", {
       sameSite: "none",
       secure: true,
     })

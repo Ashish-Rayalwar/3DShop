@@ -3,7 +3,7 @@ import "./login.css";
 import { Box, TextField, Button, styled, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { userApi } from "../api/api";
+import { api } from "../api/api";
 
 const LogoImg = require("../images/logo.png");
 const Container = styled(Box)`
@@ -67,8 +67,8 @@ const SignUp = () => {
     const userCredentials = Object.fromEntries(formData);
     console.log(formData);
     setError("");
-    userApi
-      .post("/signup", userCredentials)
+    api
+      .post("/accounts/signup", userCredentials, { withCredentials: true })
       .then((response) => {
         console.log(response.data.data);
         window.alert(response.data.message);

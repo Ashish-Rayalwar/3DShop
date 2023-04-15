@@ -3,7 +3,7 @@ import { Key } from "@mui/icons-material";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, json, useNavigate } from "react-router-dom";
-import { orderApi } from "../api/api";
+import { api } from "../api/api";
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -11,7 +11,7 @@ function MyOrders() {
   //   let orderUrl = `http://localhost:5000/order/user`;
   const navigate = useNavigate();
   useEffect(() => {
-    orderApi
+    api
       .get("/user", { withCredentials: true })
       .then((responce) => {
         setOrders(responce.data.data);

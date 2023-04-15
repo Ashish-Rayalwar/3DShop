@@ -13,6 +13,8 @@ import CreateFile from "./components/CreateFile";
 import EditFile from "./components/EditFile";
 import Admin from "./components/Admin";
 import NotFound from "./components/NotFound";
+// import Cookies from "js-cookie";
+console.log(process.env);
 
 const CheckAdmin = (children) => {
   const navigate = useNavigate();
@@ -21,8 +23,8 @@ const CheckAdmin = (children) => {
     let user = localStorage.getItem("user");
 
     user = JSON.parse(user);
-
-    if (user) {
+    let token = Cookies.get("newToken");
+    if (user && token) {
       if (user.role != "admin") {
         return navigate("/");
       }
@@ -38,8 +40,9 @@ const CheckLogin = (children) => {
 
   useEffect(() => {
     let user = localStorage.getItem("user");
-
-    if (!user) {
+    let token = Cookies.get("newToken");
+    console.log(token);
+    if (!user && !token) {
       return navigate("/");
     }
   }, []);
@@ -64,6 +67,8 @@ function App() {
   function logout() {
     setUser(null);
     localStorage.clear();
+    Cookies.remove("newToken");
+    Cookies.remove("token");
     navigate("/");
   }
 

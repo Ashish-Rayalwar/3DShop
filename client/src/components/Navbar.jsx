@@ -12,7 +12,7 @@ import {
 import React, { Fragment, useContext } from "react";
 import { AuthContext, CartContext } from "../App";
 import axios from "axios";
-import { userApi } from "../api/api";
+import { api } from "../api/api";
 // import { Cookies,useCookies } from "react-cookie";
 // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
@@ -123,18 +123,19 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const Logout = () => {
-    userApi
-      .post(`/user/logout`, null, {
+    api
+      .post(`accounts/user/logout`, null, {
         withCredentials: true,
       })
       .then((responce) => {
+        logout();
         console.log(responce.data.message);
         window.alert(responce.data.message);
-        logout();
+        // window.location.reload(false);
         navigate("/");
       })
       .catch((error) => {
-        console.log(error.responce.data.message);
+        console.log(error);
       });
   };
 
@@ -240,7 +241,7 @@ const Navbar = () => {
             <Fragment>
               <MenuItem>{isAdmin ? Create : null}</MenuItem>
               <MenuItem>
-                <Tooltip title="logout" onClick={Logout}>
+                <Tooltip title="logout" onClick={logout}>
                   <IconButton>
                     <LogoutOutlined style={{ color: "gray" }} />
                   </IconButton>

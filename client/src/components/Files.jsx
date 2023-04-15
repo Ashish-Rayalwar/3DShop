@@ -6,6 +6,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { CartContext } from "../App";
+import { api } from "../api/api";
 
 // import Card from "@mui/material/Card";
 
@@ -33,15 +34,15 @@ const Files = () => {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
   const { title } = useContext(CartContext);
-  let url = `http://localhost:5000/api/files`;
+  let url = `/files`;
   // let url = `https://polite-boundless-jelly.glitch.me/api/files`;
   if (title) {
     // url = `https://polite-boundless-jelly.glitch.me/api/files?title=${title}`;
-    url = `http://localhost:5000/api/files?title=${title}`;
+    url = `/files?title=${title}`;
   }
 
   useEffect(() => {
-    axios
+    api
       .get(url)
       .then((response) => {
         console.log(response.data.data);

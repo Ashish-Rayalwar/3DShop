@@ -138,7 +138,7 @@ const downloadFile = async (req, res) => {
     const newToken = createToken();
 
     return res.send({
-      url: `${req.host}/api/file/download/${newToken}`,
+      url: `/api/file/download/${newToken}`,
     });
   }
 
@@ -176,7 +176,7 @@ const downloadFile = async (req, res) => {
     // return res.status(200).redirect(file.filePath);
     console.log("here");
     return res.send({
-      url: `${req.host}/api/file/download/${token}`,
+      url: `/api/file/download/${token}`,
     });
   });
 };

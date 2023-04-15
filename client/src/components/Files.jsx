@@ -50,7 +50,7 @@ const Files = () => {
       })
       .catch((error) => {
         setImages([]);
-        console.log(error.response.data.message);
+        console.log(error);
         setError(error.response.data.message);
       });
   }, [url]);

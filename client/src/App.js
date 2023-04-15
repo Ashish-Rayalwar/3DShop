@@ -23,10 +23,11 @@ const CheckAdmin = (children) => {
     let user = localStorage.getItem("user");
 
     user = JSON.parse(user);
-    let token = Cookies.get("newToken");
-    if (user && token) {
+
+    // let token = Cookies.get("authorization");
+    if (user) {
       if (user.role != "admin") {
-        return navigate("/");
+        return navigate("/login");
       }
     } else {
       return navigate("/");
@@ -40,9 +41,9 @@ const CheckLogin = (children) => {
 
   useEffect(() => {
     let user = localStorage.getItem("user");
-    let token = Cookies.get("newToken");
-    console.log(token);
-    if (!user && !token) {
+    // let token = Cookies.get("newToken");
+    // console.log(token);
+    if (!user) {
       return navigate("/");
     }
   }, []);
@@ -67,8 +68,8 @@ function App() {
   function logout() {
     setUser(null);
     localStorage.clear();
-    Cookies.remove("newToken");
-    Cookies.remove("token");
+    Cookies.remove("authorization");
+    // Cookies.remove("token");
     navigate("/");
   }
 

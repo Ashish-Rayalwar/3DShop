@@ -12,7 +12,7 @@ function MyOrders() {
   const navigate = useNavigate();
   useEffect(() => {
     api
-      .get("/user", { withCredentials: true })
+      .get("/order/user", { withCredentials: true })
       .then((responce) => {
         setOrders(responce.data.data);
         console.log(responce.data.data);

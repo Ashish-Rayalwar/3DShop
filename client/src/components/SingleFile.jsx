@@ -10,7 +10,7 @@ import Navbar, { checkAdmin } from "./Navbar";
 import { AuthContext, CartContext } from "../App";
 import EditFile from "./EditFile";
 import { api } from "../api/api";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 
 const Container = styled(Box)`
   display: flex;
@@ -79,25 +79,25 @@ const SingleFile = () => {
   // let orderUrl = `http://localhost:5000/order/file/${params.id}`;
   // let user = localStorage.getItem("user");
   function createOrder() {
-    // if (!user) {
-    //   navigate("/login");
-    // }
-    // let token = Cookies.get("newToken");
+    let token = Cookies.get("authorization");
+    if (!token) {
+      navigate("/login");
+    }
+
     api
       .post(`/order/file/${params.id}`, null, { withCredentials: true })
       .then((response) => {
         setOrder(response.data.data);
         let orderId = response.data.data._id;
-
         console.log(response.data.data);
         navigate(`/order/file/${orderId}`);
       })
       .catch((error) => {
         console.log(error);
-        if (error.response.data.message == "You are not loggedIn") {
+        console.log(error.response.data.data.message);
+        if (error) {
           navigate("/login");
         }
-        console.log(error.response.data.message);
       });
   }
 

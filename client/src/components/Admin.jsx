@@ -11,7 +11,7 @@ function Admin() {
 
   useEffect(() => {
     api
-      .get("/accounts/admin", { withCredentials: true })
+      .get("/order/admin", { withCredentials: true })
       .then((responce) => {
         setAllData(responce.data.data);
         console.log(responce.data.data);

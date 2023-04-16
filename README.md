@@ -91,7 +91,7 @@
 }
 ```
 
-## Products API (_No authentication required_)
+## File API (authentication required / only admin can create, update and deleti file)
 
 ### POST /FIle
 

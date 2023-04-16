@@ -91,7 +91,7 @@
 }
 ```
 
-## File API (authentication required / only admin can create, update and deleti file)
+## File API (authentication required / only admin can create, update and delete file)
 
 ### POST /FIle
 
@@ -120,7 +120,7 @@
 
 ### GET /File
 
-- Returns all products in the collection that aren't deleted.
+- Returns all files in the collection that aren't deleted.
 
   - **Filters**
     - Size (The key for this filter will be 'title')
@@ -162,7 +162,7 @@
 
 ### GET /file/:fileId
 
-- Returns product details by file id
+- Returns Files details by file id
 - **Response format**
 
   ```yaml
@@ -209,7 +209,7 @@
 
 ### DELETE /products/:productId
 
-- Deletes a product by file id if it's not already deleted
+- Deletes a file by file id if it's not already deleted
 - **Response format**
 
 ```yaml

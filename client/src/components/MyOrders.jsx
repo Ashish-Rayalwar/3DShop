@@ -40,6 +40,11 @@ function MyOrders() {
   console.log(orders);
   return (
     <Container>
+      {orders.length === 0 ? (
+        <h1 className="alert alert-warning">
+          You haven't Purchase anything {navigate("/")}
+        </h1>
+      ) : null}
       {orders.map((x, i) => (
         <Link to={`/order/file/${x._id}`} style={{ textDecoration: "none" }}>
           <div

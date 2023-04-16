@@ -78,13 +78,16 @@ const Login = () => {
         console.log(response.data.token);
         let token = response.data.token;
         localStorage.setItem("auth-token", token);
+
         window.alert(response.data.message);
         Cookies.set("authorization", token, { expires: 86400 });
+        setError("");
         loginScuccess(response.data.data);
         navigate("/");
       })
       .catch((error) => {
         setError(error.response.data.message);
+        window.alert(error.response.data.message);
         console.log(error.response.data.message);
       });
   }
@@ -133,7 +136,6 @@ const Login = () => {
           </SignupButton>
         </Wrapper>
       </Box>
-      {error && <h1 style={{ color: "red" }}>{error}</h1>}
     </Container>
   );
 };

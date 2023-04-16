@@ -77,9 +77,11 @@ const SignUp = () => {
       .catch((error) => {
         setError(error.response.data.message);
         console.log(error.response.data.message);
+        window.alert(error.response.data.message);
       });
   }
 
+  // {error && <h1 className="alert alert-danger">{error}</h1>}
   return (
     <Container>
       <Box marginTop={{ marginTop: "55px" }}>
@@ -131,7 +133,6 @@ const SignUp = () => {
           </LoginButton>
         </Wrapper>
       </Box>
-      {error && <h1 style={{ color: "red" }}>{error}</h1>}
     </Container>
   );
 };

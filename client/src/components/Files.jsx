@@ -57,9 +57,7 @@ const Files = () => {
 
   if (images.length === 0) {
     return (
-      <div>
-        <h4>{error}</h4>
-      </div>
+      <div>{error && <h1 className="alert alert-primary">{error}</h1>}</div>
     );
   } else
     return (

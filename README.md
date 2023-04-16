@@ -5,8 +5,7 @@
 ### Project Link ==
 
 ### Overview - 3DShop.com is website where user can download 3DS Max Interior and Exterior source file
-
-# with V-ray render setup & materials, after payement. Unauthorized user can not download file. LoggedIn user can see there purchase details.
+### with V-ray render setup & materials, after payement. Unauthorized user can not download file. LoggedIn user can see there purchase details.
 
 ## FEATURE I - User
 

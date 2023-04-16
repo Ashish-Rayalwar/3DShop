@@ -3,18 +3,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { AppBar, Badge, IconButton, Tooltip } from "@mui/material";
 
-import {
-  Logout,
-  LogoutOutlined,
-  Refresh,
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { LogoutOutlined } from "@mui/icons-material";
 import React, { Fragment, useContext } from "react";
 import { AuthContext, CartContext } from "../App";
-import axios from "axios";
+
 import { api } from "../api/api";
-// import { Cookies,useCookies } from "react-cookie";
-// const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
 export const checkAdmin = () => {
   let user = localStorage.getItem("user");
@@ -57,7 +50,6 @@ const Language = styled.div`
   color: #7d8182;
 `;
 const SearchContainer = styled.div`
-  /* border: 2px solid rgb(0,109,50); */
   color: #7d8182;
   border: 1px solid black;
   display: flex;
@@ -82,8 +74,6 @@ const Center = styled.div`
 
 const Logo = styled.div`
   cursor: pointer;
-  /* width: 70px; */
-  /* margin-left: 20px; */
 `;
 const Right = styled.div`
   flex: 1;
@@ -131,7 +121,7 @@ const Navbar = () => {
         logout();
         console.log(responce.data.message);
         window.alert(responce.data.message);
-        // window.location.reload(false);
+
         navigate("/");
       })
       .catch((error) => {
@@ -139,22 +129,6 @@ const Navbar = () => {
       });
   };
 
-  // <Fragment>
-  //   <MenuItem>
-  //     <Head3>
-  //       <Link
-  //         style={{
-  //           marginTop: "5px",
-  //           textDecoration: "none",
-  //           color: "gray",
-  //         }}
-  //         to="/signup"
-  //       >
-  //         Admin
-  //       </Link>
-  //     </Head3>
-  //   </MenuItem>
-  // </Fragment>
   const Create = (
     <Fragment>
       <Link style={{ textDecoration: "none", margin: "50px" }} to="/create">
@@ -177,11 +151,6 @@ const Navbar = () => {
       </Link>
     </Fragment>
   );
-  // const AdminButton = (
-  //   <Fragment>
-
-  //   </Fragment>
-  // );
 
   const loginAndSignUp = (
     <Fragment>
@@ -266,11 +235,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// <MenuItem>
-//             <Badge badgeContent={size} color="secondary">
-//               <Link to="/cart" style={{ textDecoration: "none" }}>
-//                 <ShoppingCartOutlined style={{ color: "gray" }} />{" "}
-//               </Link>
-//             </Badge>
-//           </MenuItem>

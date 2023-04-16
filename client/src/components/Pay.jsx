@@ -71,15 +71,8 @@ function Pay() {
           navigate("/login");
         }
       });
-    // token = responce.data.token;
-    // } catch (error) {
-
-    // console.log(error.responce.data.message);
-    // }
   }
-  // const [url, setUrl] = useState("");
 
-  // console.log(token);
   async function downloadFile() {
     let token = localStorage.getItem("token");
     let orderId = params.id;
@@ -97,71 +90,7 @@ function Pay() {
           navigate("/login");
         }
       });
-
-    // window.open(`http://localhost:5000/api/file/download/${token}`, "_blank");
-
-    // console.log(token);
-    // try {
-    //   // file/download
-    //   let responce = await axios.get(
-
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   );
-
-    //   console.log(responce);
-    // const url = new window.URL(new Blob([responce.data]));
-    // const url = URL.createObjectURL(responce.data);
-    // const link = document.createElement("a");
-    // link.href = url;
-    // link.setAttribute("download", "filename.zip"); // replace 'filename' with the actual file name
-    // document.body.appendChild(link);
-    // link.click();
-    // } catch (error) {
-    // console.log(error);
-    // }
   }
-
-  // axios
-  //   .post(
-  //     `http://localhost:5000/order/payment/${params.id}`,
-  //     { status },
-  //     {
-  //       withCredentials: true,
-  //     }
-  //   )
-  //   .then((responce) => {
-
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.responce.data.message);
-  //   });
-
-  // console.log(JSON.stringify(order));
-  // console.log(order);
-  //   {
-  //   "_id": "6431914409569017e98eba06",
-  //   "title": "Modern Bedroom 3",
-  //   "description": "3ds max vray",
-  //   "fileSize": "200",
-  //   "prize": 4000,
-  //   "imgPath": "https://classroom-training-bucket.s3.ap-south-1.amazonaws.com/abc/master_bedroom_interior_design_1641210145_853463c6_progressive.jpg",
-  //   "isDeleted": false,
-  //   "createdAt": "2023-04-08T16:07:32.410Z",
-  //   "updatedAt": "2023-04-08T16:07:32.410Z",
-  //   "__v": 0
-  // }
-  // {
-  //   "userId": "6433e4e016a27dfe09b9337f",
-  //   "fileId": "6431914409569017e98eba06",
-  //   "status": "pending",
-  //   "amount": 4000,
-  //   "_id": "64340e6617680132814b624a",
-  //   "createdAt": "2023-04-10T13:25:58.653Z",
-  //   "updatedAt": "2023-04-10T13:25:58.653Z",
-  //   "__v": 0
-  // }
 
   const Container = styled.div`
     /* border: 1px solid gray; */
@@ -192,9 +121,7 @@ function Pay() {
     align-items: center;
     text-align: center;
   `;
-  // <div>
-  //       <h2>Status : -- {orderData.status}</h2>
-  //     </div>
+
   return (
     <div style={{ alignItems: "center", textAlign: "center" }}>
       <h2>Order Details</h2>

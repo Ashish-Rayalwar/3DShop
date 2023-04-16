@@ -11,7 +11,7 @@ const router = require("express").Router();
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
 router.post("/admin", createAdmin);
-router.post("/user/logout", verifyToken, logout);
+router.post("/user/logout", logout);
 
 router.all("/*", (req, res) => {
   return res.status(404).send({

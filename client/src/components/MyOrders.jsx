@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { Key } from "@mui/icons-material";
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import { Link, json, useNavigate } from "react-router-dom";
 import { api } from "../api/api";
@@ -8,22 +7,21 @@ import { api } from "../api/api";
 function MyOrders() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState("");
-  //   let orderUrl = `http://localhost:5000/order/user`;
+
   const navigate = useNavigate();
   useEffect(() => {
     api
       .get("/order/user", { withCredentials: true })
       .then((responce) => {
         setOrders(responce.data.data);
-        console.log(responce.data.data);
+
         setError("");
       })
       .catch((error) => {
-        // setOrders([]);
         if (error.response.data.message == "You are not loggedIn") {
           navigate("/login");
         }
-        console.log(error.response.data.message);
+
         setError(error.response.data.message);
         window.alert(error.response.data.message);
       });
@@ -35,7 +33,6 @@ function MyOrders() {
     align-items: center;
     height: 100vh;
     width: 100vw;
-    /* margin-top: 90px; */
   `;
   console.log(orders);
   return (
@@ -50,8 +47,6 @@ function MyOrders() {
           <div
             key={i}
             style={{
-              // alignItems: "center",
-              // border: "1px solid black",
               color: "black",
               textDecoration: "none",
               cursor: "pointer",

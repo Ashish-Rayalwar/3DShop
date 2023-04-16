@@ -1,20 +1,17 @@
 import styled from "@emotion/styled";
 
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 
 function Admin() {
   const [allData, setAllData] = useState([]);
-  //   const [userData, setUserData] = useState({})
 
   useEffect(() => {
     api
       .get("/order/admin", { withCredentials: true })
       .then((responce) => {
         setAllData(responce.data.data);
-        console.log(responce.data.data);
       })
       .catch((error) => {
         console.log(error);

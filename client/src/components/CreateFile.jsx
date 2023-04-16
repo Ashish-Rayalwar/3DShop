@@ -62,13 +62,11 @@ function CreateFile() {
   function handleSubmit(e) {
     e.preventDefault();
     let formData = new FormData(e.target);
-    // let formData = new FormData();
+
     formData.append("filePath", file);
     formData.append("imgPath", image);
-    // formData.append("imgPath", image);
-    // const FileData = Object.fromEntries(formData);
     console.log(formData);
-    // console.log(FileData);
+
     setError("");
     api
       .post("/files", formData, {
@@ -77,8 +75,6 @@ function CreateFile() {
       .then((response) => {
         console.log(response.data.data);
         window.alert("file created successfully");
-
-        // window.alert(response.data.message);
       })
       .catch((error) => {
         setError(error.response.data.message);
@@ -86,7 +82,6 @@ function CreateFile() {
       });
   }
 
-  //   let isAdmin = checkAdmin();
   return (
     <Container>
       <Box marginTop={{ marginTop: "70px" }}>

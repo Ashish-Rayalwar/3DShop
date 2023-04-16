@@ -45,10 +45,6 @@ const LoginButton = styled(Button)`
   }
 `;
 
-// const isAdmin = checkAdmin();
-// if (isAdmin == false) {
-//   navigate("/");
-// }
 function EditFile() {
   const params = useParams();
   const navigate = useNavigate();
@@ -99,7 +95,7 @@ function EditFile() {
       .then((response) => {
         console.log(response.data.data);
         window.alert("file updated successfully");
-        // window.alert(response.data.message);
+        window.alert(response.data.message);
       })
       .catch((error) => {
         setError(error.response.data.message);

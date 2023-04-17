@@ -2,11 +2,10 @@
 
 ## Project - 3DShop.com
 
-### Project Link ==
+### Project Link ==>  https://threedshopmernproject.onrender.com
 
 ### Overview - 3DShop.com is website where user can download 3DS Max Interior and Exterior source file
-
-# with V-ray render setup & materials, after payement. Unauthorized user can not download file. LoggedIn user can see there purchase details.
+### with V-ray render setup & materials, after payement. Unauthorized user can not download file. LoggedIn user can see there purchase details.
 
 ## FEATURE I - User
 
@@ -92,7 +91,7 @@
 }
 ```
 
-## Products API (_No authentication required_)
+## File API (authentication required / only admin can create, update and delete file)
 
 ### POST /FIle
 
@@ -121,7 +120,7 @@
 
 ### GET /File
 
-- Returns all products in the collection that aren't deleted.
+- Returns all files in the collection that aren't deleted.
 
   - **Filters**
     - Size (The key for this filter will be 'title')
@@ -163,7 +162,7 @@
 
 ### GET /file/:fileId
 
-- Returns product details by file id
+- Returns Files details by file id
 - **Response format**
 
   ```yaml
@@ -210,7 +209,7 @@
 
 ### DELETE /products/:productId
 
-- Deletes a product by file id if it's not already deleted
+- Deletes a file by file id if it's not already deleted
 - **Response format**
 
 ```yaml

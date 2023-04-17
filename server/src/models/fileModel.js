@@ -4,29 +4,29 @@ const fileSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      require: true,
+      required: true,
       lowercase: true,
     },
     description: {
       type: String,
-      require: true,
+      required: true,
     },
     fileSize: {
       type: String,
-      require: true,
+      required: true,
     },
     prize: {
       type: Number,
-      require: true,
+      required: true,
       default: 0,
     },
     filePath: {
       type: String,
-      require: true,
+      required: true,
     },
     imgPath: {
       type: String,
-      require: true,
+      required: true,
     },
 
     isDeleted: {

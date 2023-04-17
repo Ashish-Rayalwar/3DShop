@@ -19,10 +19,6 @@ function Pay() {
   // const [token, setToken] = useState("");
   let count = 0;
 
-  // let orderUrl = `http://localhost:5000/order/user/${params.id}`;
-  // let data = {
-  //   fileId: params.id,
-  // };
   let user = localStorage.getItem("user");
 
   if (!user) {
@@ -44,15 +40,9 @@ function Pay() {
       });
   }, [params.id]);
 
-  // `https://intelligent-bedecked-switch.glitch.me/order/payment/${params.id}`;
   const status = "completed";
   let token;
   async function makePayement() {
-    // try {
-    //   let responce = await axios.post(
-    //     `http://localhost:5000/order/payment/${params.id}`,
-    //     { status }
-    //   );
     api
       .post(
         `/order/payment/${params.id}`,

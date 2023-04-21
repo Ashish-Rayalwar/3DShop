@@ -94,6 +94,7 @@ const loginUser = async (req, res) => {
         message: "Incorrect password, plz provide valid password",
       });
     const { password, __v, ...rest } = checkEmailExist._doc;
+
     const token = JWT.sign({ userId: userId, role: role }, process.env.JWTA, {
       expiresIn: 86400,
     });

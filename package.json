@@ -4,7 +4,7 @@
   "description": "3DShop.com",
   "main": "index.js",
   "scripts": {
-    "start": "node server/src/index.js",
+    "start": "npx nodemon server/src/index.js",
     "dev": "npx nodemon server/src/index.js"
   },
   "engines": {

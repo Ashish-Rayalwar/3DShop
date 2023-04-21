@@ -55,8 +55,6 @@ const AddToCart = styled(Button)`
 const SingleFile = () => {
   const params = useParams();
   const { addTocart } = useContext(CartContext);
-  // const {user} = useContext(AuthContext)
-  // let url = `http://localhost:5000/api/files/${params.id}`;
 
   const [file, setFile] = useState({});
   const [order, setOrder] = useState({});
@@ -76,8 +74,6 @@ const SingleFile = () => {
 
   let navigate = useNavigate();
 
-  // let orderUrl = `http://localhost:5000/order/file/${params.id}`;
-  // let user = localStorage.getItem("user");
   function createOrder() {
     let token = Cookies.get("authorization");
     if (!token) {
@@ -119,8 +115,6 @@ const SingleFile = () => {
         });
     }
   };
-  // <Navbar />
-  // const isAdmin = true;
 
   console.log(isAdmin);
   return (

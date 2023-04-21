@@ -93,15 +93,21 @@ const getFileById = async (req, res) => {
     if (!mongoose.isValidObjectId(fileId))
       return res.status(400).json({ message: "Given FileId is not valid" });
 
-    const checkFileExist = await fileModel
-      .findOne({ _id: fileId, isDeleted: false })
-      .select("-filePath");
+    const checkFileExist = await fileModel.findOne({
+      _id: fileId,
+      isDeleted: false,
+    });
 
     if (!checkFileExist) {
       return res.status(404).json({ message: "File not found" });
     }
 
-    return res.status(200).json({ data: checkFileExist });
+    let baseFile =
+      "https://classroom-training-bucket.s3.ap-south-1.amazonaws.com/abc/";
+    let file = checkFileExist.filePath;
+    const fileResult = file.slice(baseFile.length, file.length);
+    console.log(fileResult);
+    return res.status(200).json({ data: checkFileExist, filePath: fileResult });
   } catch (error) {
     console.log("error in getFileById", error.message);
     return res.status(500).json({ message: error.message });
@@ -112,28 +118,36 @@ const updateFilesById = async (req, res) => {
   try {
     const fileId = req.params.fileId;
     let data = req.body;
+    const { title, description, fileSize, prize } = data;
+    console.log(data);
     if (!mongoose.isValidObjectId(fileId))
       return res.status(400).json({ message: "Given FileId is not valid" });
     const files = req.files;
     const responce = await fileUpdateValidation.validateAsync(data);
     let fileUrl;
     let imgURL;
+    const updateData = {
+      title,
+      description,
+      fileSize,
+      prize,
+    };
     if (files.length > 0) {
       for (let i of files) {
         if (i.fieldname == "filePath") {
           fileUrl = await uploadFile(i);
-          data.filePath = fileUrl;
+          updateData.filePath = fileUrl;
         }
         if (i.fieldname == "imgPath") {
           imgURL = await uploadFile(i);
-          data.imgPath = imgURL;
+          updateData.imgPath = imgURL;
         }
       }
     }
 
     const checkFileExist = await fileModel.findOneAndUpdate(
       { _id: fileId },
-      data,
+      updateData,
       { new: true }
     );
 

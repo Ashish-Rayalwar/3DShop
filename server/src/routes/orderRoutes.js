@@ -14,9 +14,7 @@ const {
 } = require("../middleware/auth");
 
 router.post("/file/:fileId", verifyToken, createOrder);
-
 router.post("/payment/:orderId", verifyToken, makePayment);
-
 router.get("/user", verifyToken, getOrderByUserId);
 router.get("/user/:orderId", verifyToken, getOrderByOrderId);
 router.get("/admin", AdminAuthorization, getOrderByAdmin);

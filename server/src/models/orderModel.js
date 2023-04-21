@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema(
 
     amount: {
       type: Number,
-      required: true,
+      require: true,
     },
   },
   { timestamps: true }

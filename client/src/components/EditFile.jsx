@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography, InputLabel } from "@mui/material";
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -55,13 +55,21 @@ function EditFile() {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
   const [singleFile, setSingleFileData] = useState({});
-
+  const [imgPath, setImgPath] = useState("");
+  const [fileName, setFileName] = useState("");
+  let len =
+    "https://classroom-training-bucket.s3.ap-south-1.amazonaws.com/abc/";
+  const imgResult = imgPath.slice(len.length, imgPath.length);
   useEffect(() => {
     api
       .get(`/files/${params.id}`, { withCredentials: true })
       .then((responce) => {
         console.log(responce.data.data);
+        console.log(responce.data.filePath);
+        setImgPath(responce.data.data.imgPath);
         setSingleFileData(responce.data.data);
+
+        setFileName(responce.data.filePath);
       })
       .catch((error) => {
         console.log(error);
@@ -70,9 +78,14 @@ function EditFile() {
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
+    setFileName("");
   };
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
+    console.log(event.target.files[0].name);
+    let sample = URL.createObjectURL(event.target.files[0]);
+    console.log(sample);
+    setImgPath(sample);
   };
 
   const onChangeHandle = (e) => {
@@ -94,8 +107,9 @@ function EditFile() {
       })
       .then((response) => {
         console.log(response.data.data);
+        console.log(response.data.data.imgPath);
+
         window.alert("file updated successfully");
-        window.alert(response.data.message);
       })
       .catch((error) => {
         setError(error.response.data.message);
@@ -149,9 +163,13 @@ function EditFile() {
             variant="standard"
             onChange={onChangeHandle}
           />
+          <hr />
+          <label style={{ marginTop: "20px" }} htmlFor="file-input">
+            {fileName}
+          </label>
           <TextField
             autoComplete="false"
-            required
+            // required
             type="file"
             name="filePath"
             id="standard-basic"
@@ -159,15 +177,24 @@ function EditFile() {
             variant="standard"
             onChange={handleFileChange}
           />
+          <hr />
+          <hr />
+
+          <label htmlFor="file-input">{imgResult}</label>
+          <img src={imgPath} />
           <TextField
             autoComplete="false"
-            required
+            // required
+
             type="file"
             name="imgPath"
-            id="standard-basic"
+            id="file-input"
             label="Select Image"
             variant="standard"
             onChange={handleImageChange}
+            // defaultValue={imgPath}
+            // value={imgPath}
+            // placeholder={imgPath}
           />
           <TextField
             value={singleFile.prize}

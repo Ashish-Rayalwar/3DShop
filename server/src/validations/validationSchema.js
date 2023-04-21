@@ -8,6 +8,7 @@ const userValidation = Joi.object({
   email: Joi.string().required().email().lowercase(),
   password: Joi.string().max(15).min(7).required(),
 });
+
 const loginValidation = Joi.object({
   email: Joi.string().required().email().lowercase(),
   password: Joi.string().max(15).min(7).required(),
@@ -30,6 +31,8 @@ const fileUpdateValidation = Joi.object({
   description: Joi.string(),
   fileSize: Joi.string(),
   prize: Joi.number(),
+  filePath: Joi.string(),
+  imgPath: Joi.string(),
 });
 
 // const orderValidate = Joi.object({

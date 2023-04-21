@@ -30,7 +30,7 @@ const CheckAdmin = (children) => {
         return navigate("/login");
       }
     } else {
-      return navigate("/");
+      return navigate("/login");
     }
   }, []);
 
@@ -70,7 +70,7 @@ function App() {
     localStorage.clear();
     Cookies.remove("authorization");
     // Cookies.remove("token");
-    navigate("/");
+    navigate("/login");
   }
 
   function loginScuccess(token) {
@@ -101,11 +101,13 @@ function App() {
         <div style={{ marginTop: "80px" }}>
           <Navbar />
           <Routes>
+            <Route exact path="*" element={<NotFound />} />
             <Route exact path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/files/:id" element={<SingleFile />} />
+
             <Route
               path="/order/file/:id"
               element={

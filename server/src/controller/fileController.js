@@ -132,18 +132,18 @@ const updateFilesById = async (req, res) => {
       fileSize,
       prize,
     };
-    if (files.length > 0) {
-      for (let i of files) {
-        if (i.fieldname == "filePath") {
-          fileUrl = await uploadFile(i);
-          updateData.filePath = fileUrl;
-        }
-        if (i.fieldname == "imgPath") {
-          imgURL = await uploadFile(i);
-          updateData.imgPath = imgURL;
+      if (files.length > 0) {
+        for (let i of files) {
+          if (i.fieldname == "filePath") {
+            fileUrl = await uploadFile(i);
+            updateData.filePath = fileUrl;
+          }
+          if (i.fieldname == "imgPath") {
+            imgURL = await uploadFile(i);
+            updateData.imgPath = imgURL;
+          }
         }
       }
-    }
 
     const checkFileExist = await fileModel.findOneAndUpdate(
       { _id: fileId },

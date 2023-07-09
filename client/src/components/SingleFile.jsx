@@ -15,7 +15,7 @@ import Cookies from "js-cookie";
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  align-items: self-start;
+  align-items: center;
 `;
 
 const Title = styled("h2")({
@@ -33,9 +33,23 @@ const Image = styled("img")({
 
 const Details = styled(Typography)`
   // border: 1px solid black;
-  width: 300px;
+  width: 500px;
   height: auto;
-  margin: 20px 20px;
+  margin: 8px 8px;
+  font-weight: 400;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+`;
+
+const ParaContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 const ButtonContainer = styled(Box)`
@@ -127,7 +141,10 @@ const SingleFile = () => {
 
       <Title>{file.title} 3D Model Free Download high quality design.</Title>
 
-      <Details>Details :- {file.description}</Details>
+      <ParaContainer>
+        <h3>Key - Features</h3>
+        <Details> {file.description}</Details>
+      </ParaContainer>
 
       <br />
 

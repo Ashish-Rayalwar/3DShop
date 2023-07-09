@@ -10,6 +10,7 @@ const { dbConnection } = require("./database/db");
 const userRoute = require("./routes/userRoutes");
 const fileRoute = require("./routes/fileRoutes");
 const orderRoute = require("./routes/orderRoutes");
+const striprRoutes = require("./routes/stripeRoutes");
 require("dotenv").config();
 app.use(multer().any());
 // app.use(cors());
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "../build")));
 app.use("/api/accounts", userRoute);
 app.use("/api", fileRoute);
 app.use("/api/order", orderRoute);
+app.use("/api/stripe", striprRoutes);
 
 const url = process.env.URL;
 

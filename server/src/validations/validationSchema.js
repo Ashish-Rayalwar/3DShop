@@ -1,7 +1,6 @@
 const Joi = require("joi");
 
-// const { joiPasswordExtendCore } = require('joi-password')
-// const JoiPassword = Joi.extend(joiPasswordExtendCore);
+
 
 const userValidation = Joi.object({
   name: Joi.string().min(3).max(10).required().lowercase(),

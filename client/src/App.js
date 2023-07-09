@@ -36,6 +36,7 @@ const CheckAdmin = (children) => {
 
   return children.children;
 };
+
 const CheckLogin = (children) => {
   const navigate = useNavigate();
 

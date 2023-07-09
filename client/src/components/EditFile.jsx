@@ -68,7 +68,6 @@ function EditFile() {
         console.log(responce.data.filePath);
         setImgPath(responce.data.data.imgPath);
         setSingleFileData(responce.data.data);
-
         setFileName(responce.data.filePath);
       })
       .catch((error) => {
